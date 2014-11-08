@@ -10,6 +10,12 @@ var mongoose = require('mongoose');
 // set up app with middlewares
 var app = express();
 
+app.use(function(req, res, next){
+  console.log("[Server] %s -> %s", req.method, req.url);
+  if (next) {
+    next();
+  }
+});
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -23,7 +29,7 @@ mongoose.connection.on("error", function() {
 });
 
 mongoose.connection.once("open", function() {
-    console.log("[MongoDB] Connection Success!!! PATH: %s", path);
+    console.log("[MongoDB] Connection Success: %s", path);
 });
 
 setupRoutes(app);
