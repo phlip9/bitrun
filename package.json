@@ -1,0 +1,45 @@
+{
+  "name": "bitrun",
+  "version": "0.0.1",
+  "description": "Incentivize with bitcoin",
+  "main": "server.js",
+  "dependencies": {
+    "bluebird": "^2.3.11",
+    "body-parser": "^1.9.0",
+    "cors": "^2.4.2",
+    "express": "^4.9.5",
+    "lodash": "^2.4.1",
+    "moment": "^2.8.3",
+    "mongoose": "^3.8.17",
+    "request-promise": "^0.2.5"
+  },
+  "devDependencies": {
+    "chai": "^1.9.2",
+    "chai-http": "^1.0.0",
+    "mocha": "^2.0.1",
+    "mockgoose": "^1.10.7",
+    "proxyquire": "^1.0.1",
+    "sinon": "^1.11.1"
+  },
+  "scripts": {
+    "test": "mocha test --recursive",
+    "tdd": "mocha test --recursive --watch",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phlip9/bitrun"
+  },
+  "keywords": [
+    "bitrun",
+    "bitcoin",
+    "hackathon",
+    "coinbase"
+  ],
+  "author": "Philip Hayes, Tak Li, Ryan Li",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phlip9/bitrun/issues"
+  },
+  "homepage": "https://github.com/phlip9/bitrun"
+}
