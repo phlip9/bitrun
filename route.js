@@ -1,6 +1,13 @@
 'use strict';
 
 var router = function(app) {
+
+  app.io.route('pedometer', {
+    push: function (data) {
+      console.log('[pedometer:push]', data);
+    }
+  });
+
   app.get('/', function (req, res) {
     res.send('hello world');
   });

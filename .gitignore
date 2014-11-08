@@ -4,5 +4,8 @@ node_modules
 # Bower
 public/bower_components
 
+# vim
+.*.swp
+
 # WebStorm
 .idea/

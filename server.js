@@ -1,7 +1,7 @@
 'use strict';
 
 // required packages
-var express = require("express");
+var express = require("express.io");
 var bodyParser = require("body-parser");
 var setupRoutes = require('./route.js');
 var cors = require('cors');
@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 
 // set up app with middlewares
 var app = express();
+app.http().io();
 
 app.use(function(req, res, next){
   console.log("[Server] %s -> %s", req.method, req.url);
