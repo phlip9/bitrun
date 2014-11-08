@@ -1,0 +1,26 @@
+{
+  "name": "bitrun",
+  "version": "0.0.1",
+  "description": "bitrun",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.9.5"
+  },
+  "devDependencies": {
+
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phlip9/bitrun"
+  },
+  "keywords": ["bitrun"],
+  "author": "JiaHang (Tak), Philip, Ryan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phlip9/bitrun/issues"
+  },
+  "homepage": "https://github.com/phlip9/bitrun"
+}

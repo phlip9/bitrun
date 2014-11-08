@@ -1,0 +1,26 @@
+{
+  "name": "bitrun",
+  "version": "0.0.1",
+  "homepage": "https://github.com/phlip9/bitrun",
+  "authors": [
+    "Jiahang <jiahang_li@outlook.com>",
+    "Philip",
+    "Ryan"
+  ],
+  "description": "bitrun",
+  "main": "server.js",
+  "keywords": ["bitrun"],
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "normalize.css": "~3.0.2",
+    "html5-boilerplate": "~4.3.0"
+  }
+}
