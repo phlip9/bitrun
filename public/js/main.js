@@ -1,9 +1,7 @@
 $(document).ready(function () {
 
-  // hide section 2
-  $("#bg2").css("display", "none");
-  $("#dashboard").css("display", "none");
-  $("#create").css("display", "none");
+  // render section 1
+  $("#bg1").css("height", window.computeStandardHeight());
 
   // check whether the user successfully logged in
   window.isUserLoggedIn(function (err, data) {
@@ -14,21 +12,18 @@ $(document).ready(function () {
       $("#bg2").css("height", window.computeStandardHeight());
       $("#bg2").removeAttr("style");
 
-      window.getUser(data, function (err, data) {
+      window.getUser(data, function (err, _data) {
         if (err) {
           console.error(err);
           console.error(JSON.stringify(err));
-        } else if (data) {
-          console.log(data);
-          console.log(JSON.stringify(data));
-          window.getIncentive(data);
+        } else if (_data) {
+          console.log("User ID get: %s", _data);
+          window.getIncentive(_data);
         }
       });
     }
   });
 
-  // render section 1
-  $("#bg1").css("height", window.computeStandardHeight());
 });
 
 // compute the height for body
@@ -43,7 +38,7 @@ window.getUser = function (data, cb) {
   //var next = function () {};
 
   $.post("/api/coinbase", {
-      url: "users?" + data.access_token,
+      url: "/users?access_token=" + data.access_token,
       method: 'GET'
     }).done(function (response) {
       cb(null, response.users[0].user.id);
@@ -57,10 +52,10 @@ window.getIncentive = function (id) {
    .done(function (data) {
      if (data) {
        console.log("Incentive Get: %s", JSON.stringify(data));
-       window.renderIncentive(data);
+       window.renderIncentive(data, id);
      } else {
        console.log("User does not have incentive yet");
-       window.renderSetIncentive();
+       window.renderSetIncentive(id);
      }
    })
    .fail(function (err) {
@@ -68,13 +63,14 @@ window.getIncentive = function (id) {
    });
 };
 
-window.renderIncentive = function (incentive) {
+window.renderIncentive = function (incentive, id) {
   $("#loading").css("display", "none");
   $("#dashboard").removeAttr("style");
-  window.makeReact(incentive);
+  window.renderIncentiveReact(incentive);
 };
 
-window.renderSetIncentive = function () {
+window.renderSetIncentive = function (id) {
   $("#loading").css("display", "none");
   $("#create").removeAttr("style");
+  window.setIncentiveReact(id);
 };
