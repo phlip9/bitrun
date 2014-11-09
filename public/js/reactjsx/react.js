@@ -77,7 +77,7 @@ window.setIncentiveReact = function () {
 			var obj = {
 				goal: String(parseInt(this.state.goal)),
 				repeat: this.refs.every.getDOMNode().value,
-				amount: String(parseInt(this.state.amount)),
+				amount: String(parseFloat(this.state.amount)),
 				currency: this.refs.curr.getDOMNode().value,
 			};
 			console.log(JSON.stringify(obj));
