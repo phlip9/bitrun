@@ -63,7 +63,7 @@ var generateCheckout = function (req, resp) {
 
   coinbase.buttons.create(buttonOpts, function (err, json) {
     if (!err && json && json.success) {
-      var url = 'http://www.coinbase.com/checkouts/' + json.code;
+      var url = 'http://www.coinbase.com/checkouts/' + json.button.code;
       console.log('CoinbaseController [generateCheckout] err', err, 'json', json, 'link', url);
       resp.json({ url: url });
     } else {
