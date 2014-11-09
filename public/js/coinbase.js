@@ -20,21 +20,15 @@ window.isUserLoggedIn = function () {
                     CLIENT_ID + "&client_secret=" + CLIENT_SECRET;
     console.log(code);
     console.log(token_uri);
-    // $.ajax(token_uri, {
-    //   type: "POST",
-    //   crossDomain : true,
-    //   xhrFields: {
-    //     withCredentials: true
-    //   },
-    //   success: function (data) {
-    //     alert(data);
-    //     alert(JSON.stringify(data));
-    //   },
-    //   error: function (err) {
-    //     alert(err);
-    //     alert(JSON.stringify(err));
-    //   }
-    // });
+    $.post("https://bitrunapp.herokuapp.com/oauth", token_uri)
+     .done(function (data) {
+       console.log(data);
+       console.log(JSON.stringify(data));
+     })
+     .fail(function (err) {
+       console.error(err);
+       console.error(JSON.stringify(err));
+     });
   }
 };
 

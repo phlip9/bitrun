@@ -18,19 +18,20 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="lib/modernizr-2.6.2.min.js"></script>
     </head>
-    <body onLoad="isUserLoggedIn()">
+    <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="myHeader">
-          <h1 id="myTitle">bitrun</h1>
+        <div class="myHeader" id="theHeader">
+          <h1 id="myTitle" class="thin">BitRun</h1>
         </div>
 
         <div id="bg1">
           <div class="container">
+            <button class="btn btn-primary">Get Started</button>
             <h2>Come On!!!!!!!!!!!</h2>
-            <button onClick="redirectToCoinBase()">Log In</button>
+            <button class="btn btn-primary" onClick="redirectToCoinBase()">Log In</button>
           </div>
         </div>
 

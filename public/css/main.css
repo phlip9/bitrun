@@ -2,27 +2,26 @@
   background-color: black;
   color: white;
   box-sizing: border-box;
-  padding: 40px;
+  padding: 20px;
 }
 
 #myTitle {
   margin: 0px;
-  font-size: 30pt;
-  font-family: "Helvetica", serif;
+  font-size: 40px;
+  font-family: "Avenir Next W02 Thin","Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
   padding: 0px;
+  font-weight: 300;
 }
 
 #bg1 {
-  background: cover;
-  background-size: 100%;
+  background-size: cover;
   background-image: url('../img/background.jpg');
   background-repeat: no-repeat;
   background-position: top left;
   background-origin: content-box;
-  height: 800px;
 }
 
-iframe {
-  width: 800px;
-  height: 600px;
-}
+/*.thin {
+  font-family: "Avenir Next W02 Thin","Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 300;
+}*/
