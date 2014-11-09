@@ -50,7 +50,7 @@ window.renderIncentiveReact = function(incentive) {
 						React.createElement("div", {className: "col-md-6"}, 
 							React.createElement("div", {className: "row thin bg-primary data-row"}, "Analytics"), 
 							React.createElement("div", {className: "row thin bg-primary data-row"}, "This should be a D3 fancy graph"), 
-							React.createElement("button", {className: "row thin btn btn-primary data-row", onClick: window.createSocketConnection()}, "Real Time Data"), 
+							React.createElement("button", {className: "row thin btn btn-primary data-row", onClick: window.alert("Sorry, the Developer sucks.")}, "Real Time Data"), 
 							React.createElement("div", {id: "socketChart", style: {'display': 'none'}}, "Fuck!")
 						)
 					)
@@ -143,7 +143,7 @@ window.setIncentiveReact = function () {
 								React.createElement("span", {className: "input-group-addon"}, this.state.currency)
 						), 
 						React.createElement("div", {className: "row formRow"}, 
-							React.createElement("button", {className: "btn btn-primary", onClick: this.update}, "Incentify")
+							React.createElement("button", {className: "btn btn-primary", onClick: this.update}, "Incentivize")
 						)
         )
 			);

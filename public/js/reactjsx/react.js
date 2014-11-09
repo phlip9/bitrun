@@ -50,7 +50,7 @@ window.renderIncentiveReact = function(incentive) {
 						<div className="col-md-6">
 							<div className="row thin bg-primary data-row">Analytics</div>
 							<div className="row thin bg-primary data-row">This should be a D3 fancy graph</div>
-							<button className="row thin btn btn-primary data-row" onClick={window.createSocketConnection()}>Real Time Data</button>
+							<button className="row thin btn btn-primary data-row" onClick={window.alert("Sorry, the Developer sucks.")}>Real Time Data</button>
 							<div id="socketChart" style={{'display': 'none'}}>Fuck!</div>
 						</div>
 					</div>
@@ -143,7 +143,7 @@ window.setIncentiveReact = function () {
 								<span className="input-group-addon">{this.state.currency}</span>
 						</div>
 						<div className="row formRow">
-							<button className="btn btn-primary" onClick={this.update}>Incentify</button>
+							<button className="btn btn-primary" onClick={this.update}>Incentivize</button>
 						</div>
         </form>
 			);
