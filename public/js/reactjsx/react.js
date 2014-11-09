@@ -48,13 +48,15 @@ window.setIncentiveReact = function (id) {
 
 	var APP2 = React.createClass({
 		mixins: [React.addons.LinkedStateMixin],
-		submit: function() {
-			console.log(JSON.stringify({
+		update: function() {
+			var obj = {
 				km: this.state.km,
 				length: this.state.length,
 				amount: this.state.amount,
 				id: id
-			}));
+			};
+			console.log(JSON.stringify(obj));
+			alert(JSON.stringify(obj));
 		},
 		getInitialState: function () {
 			return {
@@ -84,7 +86,7 @@ window.setIncentiveReact = function (id) {
 								<label>{this.state.amount}</label>
 								<span>BitCoins.</span>
 						</div>
-						<button className="btn btn-success" onClick={this.submit}>Go</button>
+						<button className="btn btn-success" onClick={this.update}>Go</button>
         </form>
 			);
 		}
