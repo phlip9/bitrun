@@ -23,6 +23,7 @@ var router = function(app, io) {
   });
 
   app.get('/api/incentive/:coinbase_id:', IncentiveController.get);
+  app.post('/api/incentive/:coinbase_id:', IncentiveController.create);
 
   app.get('/api/pedometer/:coinbase_id:', PedometerController.get);
   
