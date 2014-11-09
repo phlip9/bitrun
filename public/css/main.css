@@ -1,0 +1,28 @@
+.myHeader {
+  background-color: black;
+  color: white;
+  box-sizing: border-box;
+  padding: 40px;
+}
+
+#myTitle {
+  margin: 0px;
+  font-size: 30pt;
+  font-family: "Helvetica", serif;
+  padding: 0px;
+}
+
+#bg1 {
+  background: cover;
+  background-size: 100%;
+  background-image: url('../img/background.jpg');
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-origin: content-box;
+  height: 800px;
+}
+
+iframe {
+  width: 800px;
+  height: 600px;
+}
