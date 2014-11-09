@@ -3,6 +3,7 @@
 var PedometerController = require('./controllers/PedometerController.js');
 var IncentiveController = require('./controllers/IncentiveController.js');
 var OauthController = require('./controllers/OauthController.js');
+var CoinbaseController = require('./controllers/CoinbaseController.js');
 
 var socketRoutes = function (socket) {
   console.log('[Socket] Someone connected to socket');
@@ -24,6 +25,8 @@ var router = function(app, io) {
   app.get('/api/pedometer/:coinbase_id?', PedometerController.get);
   
   app.post('/oauth', OauthController.getAccessToken);
+
+  app.post('/api/coinbase', CoinbaseController.forward);
 
 };
 
