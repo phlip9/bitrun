@@ -48,19 +48,18 @@ window.setIncentiveReact = function () {
 
 	var APP2 = React.createClass({displayName: 'APP2',
 		mixins: [React.addons.LinkedStateMixin],
-		getRepeat: function () {
-			return document.getElementById("theDatalist").value;
-		},
-		change: function (e) {
-			self.setState({currency: e.target.value});
+		change: function () {
+			this.setState({
+				currency: this.refs.curr.getDOMNode().value
+			});
 		},
 		update: function (e) {
 			e.preventDefault();
 			var obj = {
 				goal: String(parseInt(this.state.goal)),
-				repeat: this.getRepeat(),
+				repeat: this.refs.every.getDOMNode().value,
 				amount: String(parseInt(this.state.amount)),
-				currency: this.getCurrency(),
+				currency: this.refs.curr.getDOMNode().value,
 			};
 			console.log(JSON.stringify(obj));
 			window.createIncentive(obj);
@@ -85,7 +84,7 @@ window.setIncentiveReact = function () {
 						React.createElement("div", {className: "input-group row formRow"}, 
 								React.createElement("span", {className: "input-group-addon"}, "Period:"), 
 								React.createElement("input", {list: "periods", name: "period", className: "form-control", 
-								 id: "theDatalist", placeholder: "How long should one period be?"}), 
+								 ref: "every", placeholder: "How long should one period be?"}), 
 								React.createElement("datalist", {id: "periods"}, 
 										React.createElement("option", {value: "weekly"}), 
 										React.createElement("option", {value: "every_two_weeks"}), 
@@ -101,7 +100,7 @@ window.setIncentiveReact = function () {
 						), 
 						React.createElement("div", {className: "input-group row formRow"}, 
 								React.createElement("input", {list: "currencyList", name: "currencylst", className: "form-control", 
-								id: "theCurrencyList", placeholder: "BitCoin or US Dollar?", onChange: this.change}), 
+								ref: "curr", placeholder: "BitCoin or US Dollar?", onChange: this.change}), 
 								React.createElement("datalist", {id: "currencyList"}, 
 										React.createElement("option", {value: "BTC"}), 
 										React.createElement("option", {value: "USD"})
