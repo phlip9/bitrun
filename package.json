@@ -44,5 +44,6 @@
   "bugs": {
     "url": "https://github.com/phlip9/bitrun/issues"
   },
-  "homepage": "https://github.com/phlip9/bitrun"
+  "homepage": "https://github.com/phlip9/bitrun",
+  "engine": "node 0.10.30"
 }
