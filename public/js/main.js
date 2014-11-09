@@ -40,7 +40,7 @@ window.getIncentive = function (data, cb) {
   //var next = function () {};
 
   $.get(
-      "https://api.coinbase.com/v1/users?access_token=" + data.access_token;
+      "https://api.coinbase.com/v1/users?access_token=" + data.access_token
     ).done(function (response) {
       cb(null, response.users[0].user.id);
     }).fail(function (err) {
