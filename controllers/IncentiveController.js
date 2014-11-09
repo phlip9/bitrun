@@ -3,7 +3,7 @@
 var IncentiveModel = require('../models/IncentiveModel.js');
 
 var get = function (req, resp) {
-  var coinbase_id = req.params('coinbase_id');
+  var coinbase_id = req.params.coinbase_id;
 
   console.log('IncentiveController [get] id:', coinbase_id);
 
