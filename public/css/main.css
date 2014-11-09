@@ -49,3 +49,11 @@
   font-size: 20px;
   font-family: "Avenir Next W02 Thin","Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+
+.formRow {
+  /*TODO: Margin Stuff*/
+}
+
+#create {
+  background: rgba(255, 255, 255, 0.60);
+}

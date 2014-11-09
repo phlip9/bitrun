@@ -1,3 +1,4 @@
+// initialize document
 $(document).ready(function () {
 
   // render section 1
@@ -17,8 +18,9 @@ $(document).ready(function () {
           console.error(err);
           console.error(JSON.stringify(err));
         } else if (_data) {
+          window.userId = _data;
           console.log("User ID get: %s", _data);
-          window.getIncentive(_data);
+          window.getIncentive();
         }
       });
     }
@@ -35,8 +37,6 @@ window.computeStandardHeight = function () {
 };
 
 window.getUser = function (data, cb) {
-  //var next = function () {};
-
   $.post("/api/coinbase", {
       url: "/users?access_token=" + data.access_token,
       method: 'GET'
@@ -47,15 +47,16 @@ window.getUser = function (data, cb) {
     });
 };
 
-window.getIncentive = function (id) {
+window.getIncentive = function () {
+  var id = window.userId;
   $.get("/api/incentive/" + id)
    .done(function (data) {
      if (data) {
        console.log("Incentive Get: %s", JSON.stringify(data));
-       window.renderIncentive(data, id);
+       window.renderIncentive(data);
      } else {
        console.log("User does not have incentive yet");
-       window.renderSetIncentive(id);
+       window.renderSetIncentive();
      }
    })
    .fail(function (err) {
@@ -63,14 +64,52 @@ window.getIncentive = function (id) {
    });
 };
 
-window.renderIncentive = function (incentive, id) {
+window.renderIncentive = function (incentive) {
   $("#loading").css("display", "none");
   $("#dashboard").removeAttr("style");
   window.renderIncentiveReact(incentive);
 };
 
-window.renderSetIncentive = function (id) {
+window.renderSetIncentive = function () {
   $("#loading").css("display", "none");
   $("#create").removeAttr("style");
-  window.setIncentiveReact(id);
+  window.setIncentiveReact();
+};
+
+window.createIncentive = function (incentive) {
+  $("#loading").removeAttr("style");
+
+  var create_date = moment().format("YYYY-MM-DDTHH:mm:ssZ");
+  var date_table = {
+    every_two_weeks: [2, "week"],
+    weekly: [1, "week"],
+    monthly: [1, "month"],
+    yearly: [1, "year"],
+  };
+
+  var d = date_table[incentive.repeat];
+  var expire_date = moment().add(d[0], d[1]).format("YYYY-MM-DDTHH:mm:ssZ");
+
+  $.post("/api/incentive/" + window.userId, {
+    coinbase_id: window.userId,
+    amount: incentive.amount,
+    expire_date: expire_date,
+    create_date: create_date
+  })
+   .done(function (data) {
+     console.log("Incentive Created for %s", window.userId);
+     console.log(data, JSON.stringify(data));
+   })
+   .fail(function (err) {
+     console.error(err);
+   });
+
+  $.post("/api/coinbase/checkout", incentive)
+   .done(function (link) {
+     console.log("Link generated: %s", link);
+     window.location.assign(link);
+   })
+   .fail(function (err) {
+     console.error(err);
+   });
 };
