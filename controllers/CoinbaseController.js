@@ -3,6 +3,8 @@
 var request = require('request');
 var requestp = require('request-promise');
 
+var IncentiveModel = require('../models/IncentiveModel.js');
+
 var BASE_URL = 'https://api.coinbase.com/v1';
 var API_KEY = process.env.COINBASE_API_KEY;
 var SECRET_KEY = process.env.COINBASE_SECRET_KEY;
@@ -53,7 +55,7 @@ var generateCheckout = function (req, resp) {
       price_currency_iso: body.currency || 'BTC',
       subscription: true,
       repeat: body.repeat || 'never',
-      variable_price: true
+      custom: body.coinbase_id
     }
   };
 
@@ -70,8 +72,25 @@ var generateCheckout = function (req, resp) {
   });
 };
 
+var transactionCallback = function (req, resp) {
+  var body = req.body;
+  console.log('CoinbaseController [transactionCallback]', body);
+
+  if (body.order.status === 'complete') {
+    var coinbase_id = body.order.custom;
+
+    IncentiveModel.findOneAndUpdateAsync({ coinbase_id: coinbase_id }, { verified: true })
+      .then(function (ret) {
+        console.log('Successfully updated IncentiveModel', ret);
+      }).catch(function (err) {
+        console.error('Error updating IncentiveModel', err);
+      });
+  }
+};
+
 module.exports = {
   generateCheckout: generateCheckout,
   getAccessToken: getAccessToken,
+  transactionCallback: transactionCallback,
   forward: forward
 };
