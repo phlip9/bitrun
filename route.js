@@ -2,10 +2,8 @@
 
 var router = function(app) {
 
-  app.io.route('pedometer', {
-    push: function (data) {
-      console.log('[pedometer:push]', data);
-    }
+  app.io.route('pedometer-socket', function (data) {
+    console.log('[pedometer]', JSON.stringify(data));
   });
 
   app.get('/', function (req, res) {
