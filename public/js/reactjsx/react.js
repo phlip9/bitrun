@@ -5,11 +5,16 @@ window.renderIncentiveReact = function(incentive) {
 	var APP = React.createClass({
 		getDefaultProps: function() {
 			return {
-					km: incentive.goal,
+					goal: incentive.goal,
 					create: incentive.create_date,
 					expire: incentive.expire_date,
 					amount: incentive.amount
 				};
+		},
+		getTimeDifference: function () {
+			var c_m = moment(this.create, "YYYY-MM-DDTHH:mm:ssZ");
+			var e_m = moment(this.expire, "YYYY-MM-DDTHH:mm:ssZ");
+			return e_m.diff(c_m, "days")
 		},
 		getInitialState: function () {
 			return {
@@ -20,7 +25,7 @@ window.renderIncentiveReact = function(incentive) {
 			return (
 				<div>
 					<div className="row page-header thin">
-						Your Goal: Run {this.props.km} km in {this.props.days} days
+						Your Goal: Run {this.props.goal} km in {this.getTimeDifference()}.
 					</div>
 					<div className="row">
 						<div className="col-md-6">
@@ -32,7 +37,7 @@ window.renderIncentiveReact = function(incentive) {
 						<div className="col-md-6">
 							<div>Analytics</div>
 							<div>This should be a D3 fancy graph</div>
-							<button onClick="createSocketConnection()"></button>
+							<button onClick={window.createSocketConnection()}></button>
 						</div>
 					</div>
 				</div>

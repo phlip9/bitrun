@@ -5,11 +5,16 @@ window.renderIncentiveReact = function(incentive) {
 	var APP = React.createClass({displayName: 'APP',
 		getDefaultProps: function() {
 			return {
-					km: incentive.goal,
+					goal: incentive.goal,
 					create: incentive.create_date,
 					expire: incentive.expire_date,
 					amount: incentive.amount
 				};
+		},
+		getTimeDifference: function () {
+			var c_m = moment(this.create, "YYYY-MM-DDTHH:mm:ssZ");
+			var e_m = moment(this.expire, "YYYY-MM-DDTHH:mm:ssZ");
+			return e_m.diff(c_m, "days")
 		},
 		getInitialState: function () {
 			return {
@@ -20,7 +25,7 @@ window.renderIncentiveReact = function(incentive) {
 			return (
 				React.createElement("div", null, 
 					React.createElement("div", {className: "row page-header thin"}, 
-						"Your Goal: Run ", this.props.km, " km in ", this.props.days, " days"
+						"Your Goal: Run ", this.props.goal, " km in ", this.getTimeDifference(), "."
 					), 
 					React.createElement("div", {className: "row"}, 
 						React.createElement("div", {className: "col-md-6"}, 
@@ -32,7 +37,7 @@ window.renderIncentiveReact = function(incentive) {
 						React.createElement("div", {className: "col-md-6"}, 
 							React.createElement("div", null, "Analytics"), 
 							React.createElement("div", null, "This should be a D3 fancy graph"), 
-							React.createElement("button", {onClick: "createSocketConnection()"})
+							React.createElement("button", {onClick: window.createSocketConnection()})
 						)
 					)
 				)

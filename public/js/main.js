@@ -85,17 +85,20 @@ window.createIncentive = function (incentive) {
     every_two_weeks: [2, "week"],
     weekly: [1, "week"],
     monthly: [1, "month"],
-    yearly: [1, "year"],
+    yearly: [1, "year"]
   };
 
   var d = date_table[incentive.repeat];
   var expire_date = moment().add(d[0], d[1]).format("YYYY-MM-DDTHH:mm:ssZ");
 
+  incentive['coinbase_id'] = window.userId;
+
   $.post("/api/incentive/" + window.userId, {
     coinbase_id: window.userId,
     amount: incentive.amount,
     expire_date: expire_date,
-    create_date: create_date
+    create_date: create_date,
+    goal: incentive.goal
   })
    .done(function (data) {
      console.log("Incentive Created for %s", window.userId);
