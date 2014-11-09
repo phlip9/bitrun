@@ -51,7 +51,7 @@ window.renderIncentiveReact = function(incentive) {
 							<div className="row thin bg-primary data-row">Analytics</div>
 							<div className="row thin bg-primary data-row">This should be a D3 fancy graph</div>
 							<button className="row thin btn btn-primary data-row" onClick={window.createSocketConnection()}>Real Time Data</button>
-							<div id="socketChart" style="display: none">Fuck!</div>
+							<div id="socketChart" style={{'display': 'none'}}>Fuck!</div>
 						</div>
 					</div>
 				</div>

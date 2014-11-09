@@ -51,7 +51,7 @@ window.renderIncentiveReact = function(incentive) {
 							React.createElement("div", {className: "row thin bg-primary data-row"}, "Analytics"), 
 							React.createElement("div", {className: "row thin bg-primary data-row"}, "This should be a D3 fancy graph"), 
 							React.createElement("button", {className: "row thin btn btn-primary data-row", onClick: window.createSocketConnection()}, "Real Time Data"), 
-							React.createElement("div", {id: "socketChart", style: "display: none"}, "Fuck!")
+							React.createElement("div", {id: "socketChart", style: {'display': 'none'}}, "Fuck!")
 						)
 					)
 				)
