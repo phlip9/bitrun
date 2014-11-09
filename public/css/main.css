@@ -19,9 +19,26 @@
   background-repeat: no-repeat;
   background-position: top left;
   background-origin: content-box;
+  text-align: center;
 }
 
-/*.thin {
+.thin {
   font-family: "Avenir Next W02 Thin","Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
   font-weight: 300;
-}*/
+}
+
+#start {
+  font-size: 20px;
+}
+
+#title {
+  margin-top: 50%;
+  padding: 1%;
+  background-color: rgba(255, 255, 255, 0.40);
+}
+
+#login {
+  background-image: url('../img/coinbase.png');
+  height: 100%;
+  width: 100%;
+}
