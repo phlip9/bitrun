@@ -59,3 +59,14 @@
 #create {
   background: rgba(255, 255, 255, 0.60);
 }
+
+.data-row {
+  margin: 5%;
+  font-family: "Avenir Next W02 Thin","Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 300;
+  font-size: 15pt;
+}
+
+#thePageHeader {
+  font-size: 20pt;
+}

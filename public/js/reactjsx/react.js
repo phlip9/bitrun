@@ -37,20 +37,21 @@ window.renderIncentiveReact = function(incentive) {
 		render: function () {
 			return (
 				<div>
-					<div className="row page-header thin">
+					<div className="row page-header thin" id="thePageHeader">
 						Your Goal: Run {this.props.goal} km in {this.props.repeat} days.
 					</div>
 					<div className="row">
 						<div className="col-md-6">
-							<div className="row">Created On: {this.props.create}</div>
-							<div className="row">Expires On: {this.props.expire}</div>
-							<div className="row">Bitcoins Bid: {this.props.amount}</div>
-							<div className="row">Percent Done: {this.state.percent}</div>
+							<div className="row thin bg-primary data-row">Created On: {this.props.create}</div>
+							<div className="row thin bg-primary data-row">Expires On: {this.props.expire}</div>
+							<div className="row thin bg-primary data-row">Bitcoins Bid: {this.props.amount}</div>
+							<div className="row thin bg-primary data-row">Percent Done: {this.state.percent}</div>
 						</div>
 						<div className="col-md-6">
-							<div>Analytics</div>
-							<div>This should be a D3 fancy graph</div>
-							<button onClick={window.createSocketConnection()}></button>
+							<div className="row thin bg-primary data-row">Analytics</div>
+							<div className="row thin bg-primary data-row">This should be a D3 fancy graph</div>
+							<button className="row thin btn btn-primary data-row" onClick={window.createSocketConnection()}>Real Time Data</button>
+							<div id="socketChart" style="display: none">Fuck!</div>
 						</div>
 					</div>
 				</div>
@@ -142,7 +143,7 @@ window.setIncentiveReact = function () {
 								<span className="input-group-addon">{this.state.currency}</span>
 						</div>
 						<div className="row formRow">
-							<button className="btn btn-primary" onClick={this.update}>Create Sentiment</button>
+							<button className="btn btn-primary" onClick={this.update}>Incentify</button>
 						</div>
         </form>
 			);

@@ -37,20 +37,21 @@ window.renderIncentiveReact = function(incentive) {
 		render: function () {
 			return (
 				React.createElement("div", null, 
-					React.createElement("div", {className: "row page-header thin"}, 
+					React.createElement("div", {className: "row page-header thin", id: "thePageHeader"}, 
 						"Your Goal: Run ", this.props.goal, " km in ", this.props.repeat, " days."
 					), 
 					React.createElement("div", {className: "row"}, 
 						React.createElement("div", {className: "col-md-6"}, 
-							React.createElement("div", {className: "row"}, "Created On: ", this.props.create), 
-							React.createElement("div", {className: "row"}, "Expires On: ", this.props.expire), 
-							React.createElement("div", {className: "row"}, "Bitcoins Bid: ", this.props.amount), 
-							React.createElement("div", {className: "row"}, "Percent Done: ", this.state.percent)
+							React.createElement("div", {className: "row thin bg-primary data-row"}, "Created On: ", this.props.create), 
+							React.createElement("div", {className: "row thin bg-primary data-row"}, "Expires On: ", this.props.expire), 
+							React.createElement("div", {className: "row thin bg-primary data-row"}, "Bitcoins Bid: ", this.props.amount), 
+							React.createElement("div", {className: "row thin bg-primary data-row"}, "Percent Done: ", this.state.percent)
 						), 
 						React.createElement("div", {className: "col-md-6"}, 
-							React.createElement("div", null, "Analytics"), 
-							React.createElement("div", null, "This should be a D3 fancy graph"), 
-							React.createElement("button", {onClick: window.createSocketConnection()})
+							React.createElement("div", {className: "row thin bg-primary data-row"}, "Analytics"), 
+							React.createElement("div", {className: "row thin bg-primary data-row"}, "This should be a D3 fancy graph"), 
+							React.createElement("button", {className: "row thin btn btn-primary data-row", onClick: window.createSocketConnection()}, "Real Time Data"), 
+							React.createElement("div", {id: "socketChart", style: "display: none"}, "Fuck!")
 						)
 					)
 				)
@@ -142,7 +143,7 @@ window.setIncentiveReact = function () {
 								React.createElement("span", {className: "input-group-addon"}, this.state.currency)
 						), 
 						React.createElement("div", {className: "row formRow"}, 
-							React.createElement("button", {className: "btn btn-primary", onClick: this.update}, "Create Sentiment")
+							React.createElement("button", {className: "btn btn-primary", onClick: this.update}, "Incentify")
 						)
         )
 			);
