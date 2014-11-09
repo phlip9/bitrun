@@ -43,7 +43,7 @@ window.getUser = function (data, cb) {
   //var next = function () {};
 
   $.post("/api/coinbase", {
-      url: "users?access_token=" + data.access_token,
+      url: "/users?access_token=" + data.access_token,
       method: 'GET'
     }).done(function (response) {
       cb(null, response.users[0].user.id);
