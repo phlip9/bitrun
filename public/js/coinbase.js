@@ -1,4 +1,4 @@
-var REDIRECT_URI = "https://bitrunapp.herokuapp.com";
+var REDIRECT_URI = encodeURIComponent("https://bitrunapp.herokuapp.com");
 var CLIENT_ID = "68cfc8c475c6730bd046e4da8039a76edfa76f913bf58d7d0ddaffe937360139";
 var CLIENT_SECRET = "d376095308bb244127abfa069cb9aff9787f5542238051b9e3d67cbf0fa2477d";
 var AUTHORIZE_URI = "https://www.coinbase.com/oauth/authorize"
