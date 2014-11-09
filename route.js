@@ -1,11 +1,11 @@
 'use strict';
 
+var PedometerController = require('controllers/PedometerController.js');
+
 var socketRoutes = function (socket) {
   console.log('[Socket] Someone connected to socket');
 
-  socket.on('pedometer', function (data) {
-    console.log('[pedometer]', data);
-  });
+  socket.on('pedometer', PedometerController.addStepData);
 
   socket.on('disconnect', function () {
     console.log('[Socket] User disconnected from socket');
