@@ -45,4 +45,7 @@
   width: 100%;
 }
 
-#create {}
+.myForm {
+  font-size: 20px;
+  font-family: "Avenir Next W02 Thin","Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+}

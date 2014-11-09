@@ -63,10 +63,10 @@ window.setIncentiveReact = function (id) {
 		update: function (e) {
 			e.preventDefault();
 			var obj = {
-				km: this.state.km,
-				length: this.getLength(),
-				amount: this.state.amount,
-				id: id
+				km: String(parseInt(this.state.km)),
+				length: String(parseInt(this.getLength())),
+				amount: String(parseInt(this.state.amount)),
+				id: String(id),
 			};
 			console.log(JSON.stringify(obj));
 		},
@@ -79,14 +79,14 @@ window.setIncentiveReact = function (id) {
 		},
 		render: function () {
 			return (
-        React.createElement("form", null, 
-            React.createElement("div", {className: "input-group"}, 
-                React.createElement("input", {valueLink: this.linkState('km'), type: "number", 
+        React.createElement("form", {className: "myForm"}, 
+            React.createElement("div", {className: "input-group row"}, 
+                React.createElement("input", {valueLink: this.linkState('km'), type: "text", 
 								 placeholder: "How many kms do you wanna run?", 
 								 className: "form-control"}), 
 								React.createElement("span", {className: "input-group-addon"}, "km")
             ), 
-						React.createElement("div", {className: "input-group"}, 
+						React.createElement("div", {className: "input-group row"}, 
 								React.createElement("span", {className: "input-group-addon"}, "Period:"), 
 								React.createElement("input", {list: "periods", name: "period", className: "form-control", id: "theDatalist"}), 
 								React.createElement("datalist", {id: "periods"}, 
@@ -95,12 +95,14 @@ window.setIncentiveReact = function (id) {
 										React.createElement("option", {value: "Month"})
 								)
 						), 
-						React.createElement("div", {className: "input-group"}, 
-								React.createElement("input", {valueLink: this.linkState('amount'), type: "number", 
-								 placeholder: "How many BitCoins do you want to commit"}), 
+						React.createElement("div", {className: "input-group row"}, 
+								React.createElement("input", {valueLink: this.linkState('amount'), type: "text", 
+								 placeholder: "How many BitCoins do you want to commit?"}), 
 								React.createElement("span", {className: "input-group-addon"}, "BitCoins")
 						), 
-						React.createElement("button", {className: "btn btn-success", onClick: this.update}, "Go")
+						React.createElement("div", {className: "row"}, 
+							React.createElement("button", {className: "btn btn-success", onClick: this.update}, "Create Sentiment")
+						)
         )
 			);
 		}

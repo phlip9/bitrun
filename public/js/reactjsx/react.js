@@ -63,10 +63,10 @@ window.setIncentiveReact = function (id) {
 		update: function (e) {
 			e.preventDefault();
 			var obj = {
-				km: this.state.km,
-				length: this.getLength(),
-				amount: this.state.amount,
-				id: id
+				km: String(parseInt(this.state.km)),
+				length: String(parseInt(this.getLength())),
+				amount: String(parseInt(this.state.amount)),
+				id: String(id),
 			};
 			console.log(JSON.stringify(obj));
 		},
@@ -79,14 +79,14 @@ window.setIncentiveReact = function (id) {
 		},
 		render: function () {
 			return (
-        <form>
-            <div className="input-group">
-                <input valueLink={this.linkState('km')} type="number"
+        <form className="myForm">
+            <div className="input-group row">
+                <input valueLink={this.linkState('km')} type="text"
 								 placeholder="How many kms do you wanna run?"
 								 className="form-control"/>
 								<span className="input-group-addon">km</span>
             </div>
-						<div className="input-group">
+						<div className="input-group row">
 								<span className="input-group-addon">Period:</span>
 								<input list="periods" name="period" className="form-control" id="theDatalist" />
 								<datalist id="periods">
@@ -95,12 +95,14 @@ window.setIncentiveReact = function (id) {
 										<option value="Month"/>
 								</datalist>
 						</div>
-						<div className="input-group">
-								<input valueLink={this.linkState('amount')} type="number"
-								 placeholder="How many BitCoins do you want to commit"/>
+						<div className="input-group row">
+								<input valueLink={this.linkState('amount')} type="text"
+								 placeholder="How many BitCoins do you want to commit?"/>
 								<span className="input-group-addon">BitCoins</span>
 						</div>
-						<button className="btn btn-success" onClick={this.update}>Go</button>
+						<div className="row">
+							<button className="btn btn-success" onClick={this.update}>Create Sentiment</button>
+						</div>
         </form>
 			);
 		}
