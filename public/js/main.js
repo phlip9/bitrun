@@ -71,7 +71,7 @@ window.getIncentive = function (id) {
 window.renderIncentive = function (incentive) {
   $("#loading").css("display", "none");
   $("#dashboard").removeAttr("style");
-  window.makeReact(incentive);
+  window.renderIncentiveReact(incentive);
 };
 
 window.renderSetIncentive = function () {
