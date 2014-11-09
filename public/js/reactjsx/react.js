@@ -51,8 +51,8 @@ window.setIncentiveReact = function () {
 		getRepeat: function () {
 			return document.getElementById("theDatalist").value;
 		},
-		getCurrency: function () {
-			return document.getElementById("theCurrencyList").value;
+		change: function (e) {
+			self.setState({currency: e.target.value});
 		},
 		update: function (e) {
 			e.preventDefault();
@@ -101,12 +101,12 @@ window.setIncentiveReact = function () {
 						</div>
 						<div className="input-group row formRow">
 								<input list="currencyList" name="currencylst" className="form-control"
-								id="theCurrencyList" placeholder="BitCoin or US Dollar?"/>
+								id="theCurrencyList" placeholder="BitCoin or US Dollar?" onChange={this.change}/>
 								<datalist id="currencyList">
 										<option value="BTC"/>
 										<option value="USD"/>
 								</datalist>
-								<span className="input-group-addon">{this.getCurrency()}</span>
+								<span className="input-group-addon">{this.state.currency}</span>
 						</div>
 						<div className="row formRow">
 							<button className="btn btn-success" onClick={this.update}>Create Sentiment</button>

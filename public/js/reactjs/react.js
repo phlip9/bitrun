@@ -51,8 +51,8 @@ window.setIncentiveReact = function () {
 		getRepeat: function () {
 			return document.getElementById("theDatalist").value;
 		},
-		getCurrency: function () {
-			return document.getElementById("theCurrencyList").value;
+		change: function (e) {
+			self.setState({currency: e.target.value});
 		},
 		update: function (e) {
 			e.preventDefault();
@@ -101,12 +101,12 @@ window.setIncentiveReact = function () {
 						), 
 						React.createElement("div", {className: "input-group row formRow"}, 
 								React.createElement("input", {list: "currencyList", name: "currencylst", className: "form-control", 
-								id: "theCurrencyList", placeholder: "BitCoin or US Dollar?"}), 
+								id: "theCurrencyList", placeholder: "BitCoin or US Dollar?", onChange: this.change}), 
 								React.createElement("datalist", {id: "currencyList"}, 
 										React.createElement("option", {value: "BTC"}), 
 										React.createElement("option", {value: "USD"})
 								), 
-								React.createElement("span", {className: "input-group-addon"}, this.getCurrency())
+								React.createElement("span", {className: "input-group-addon"}, this.state.currency)
 						), 
 						React.createElement("div", {className: "row formRow"}, 
 							React.createElement("button", {className: "btn btn-success", onClick: this.update}, "Create Sentiment")
