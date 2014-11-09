@@ -14,8 +14,7 @@ var distanceRollup = function (stepData) {
   }
 
   return {
-    total_distance: total_distance,
-    data: stepData
+    total_distance: total_distance
   };
 };
 

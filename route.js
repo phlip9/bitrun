@@ -24,9 +24,9 @@ var router = function(app, io) {
 
   app.get('/api/pedometer/:coinbase_id?', PedometerController.get);
   
-  app.post('/oauth', OauthController.getAccessToken);
-
+  app.post('/oauth', CoinbaseController.getAccessToken);
   app.post('/api/coinbase', CoinbaseController.forward);
+  app.post('/api/coinbase/checkout', CoinbaseController.generateCheckout);
 
 };
 
