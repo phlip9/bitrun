@@ -15,6 +15,9 @@ var forward = function (req, resp) {
     reqOpts.body = options.body;
   }
 
+  console.log('CoinbaseController [forward] options:', options);
+  console.log('CoinbaseController [forward] reqOpts:', reqOpts);
+
   resp.set('Content-Type', 'application/json');
 
   request(reqOpts)
