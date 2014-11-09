@@ -5,11 +5,16 @@ window.renderIncentiveReact = function(incentive) {
 	var APP = React.createClass({
 		getDefaultProps: function() {
 			return {
-					km: incentive.goal,
+					goal: incentive.goal,
 					create: incentive.create_date,
 					expire: incentive.expire_date,
 					amount: incentive.amount
 				};
+		},
+		getTimeDifference: function () {
+			var c_m = moment(this.create, "YYYY-MM-DDTHH:mm:ssZ");
+			var e_m = moment(this.expire, "YYYY-MM-DDTHH:mm:ssZ");
+			return e_m.diff(c_m, "days")
 		},
 		getInitialState: function () {
 			return {
@@ -20,7 +25,7 @@ window.renderIncentiveReact = function(incentive) {
 			return (
 				<div>
 					<div className="row page-header thin">
-						Your Goal: Run {this.props.km} km in {this.props.days} days
+						Your Goal: Run {this.props.goal} km in {this.getTimeDifference()}.
 					</div>
 					<div className="row">
 						<div className="col-md-6">
@@ -32,7 +37,7 @@ window.renderIncentiveReact = function(incentive) {
 						<div className="col-md-6">
 							<div>Analytics</div>
 							<div>This should be a D3 fancy graph</div>
-							<button onClick="createSocketConnection()"></button>
+							<button onClick={window.createSocketConnection()}></button>
 						</div>
 					</div>
 				</div>
@@ -62,6 +67,21 @@ window.setIncentiveReact = function () {
 				currency: this.refs.curr.getDOMNode().value,
 			};
 			console.log(JSON.stringify(obj));
+			var repeatResult = ["monthly", "weekly", "every_two_weeks", "yearly"];
+			var currencyResult = ["USD", "BTC"];
+
+			/* TODO: Error Handling
+			if (repearResult.indexOf(obj.repeat) === -1) {
+
+			} else if (currencyResult.indexOf(obj.currency) === -1) {
+
+			} else if (goal === "NaN") {
+
+			} else if (amount === "NaN") {
+
+			} else {
+				window.createIncentive(obj);
+			} */
 			window.createIncentive(obj);
 		},
 		getInitialState: function () {
@@ -78,13 +98,13 @@ window.setIncentiveReact = function () {
             <div className="input-group row formRow">
                 <input valueLink={this.linkState('goal')} type="text"
 								 placeholder="How many kms do you wanna run?"
-								 className="form-control"/>
+								 className="form-control" required/>
 								<span className="input-group-addon">km</span>
             </div>
 						<div className="input-group row formRow">
 								<span className="input-group-addon">Period:</span>
 								<input list="periods" name="period" className="form-control"
-								 ref="every" placeholder="How long should one period be?"/>
+								 ref="every" placeholder="How long should one period be?" required/>
 								<datalist id="periods">
 										<option value="weekly"/>
 										<option value="every_two_weeks"/>
@@ -95,12 +115,13 @@ window.setIncentiveReact = function () {
 						<div className="input-group row formRow">
 								<input valueLink={this.linkState('amount')} type="text"
 								 placeholder="How many BitCoins do you want to commit?"
-								 className="form-control"/>
+								 className="form-control" required/>
 								<span className="input-group-addon">BitCoins</span>
 						</div>
 						<div className="input-group row formRow">
 								<input list="currencyList" name="currencylst" className="form-control"
-								ref="curr" placeholder="BitCoin or US Dollar?" onChange={this.change}/>
+								ref="curr" placeholder="BitCoin or US Dollar?" onChange={this.change}
+								required/>
 								<datalist id="currencyList">
 										<option value="BTC"/>
 										<option value="USD"/>
@@ -108,7 +129,7 @@ window.setIncentiveReact = function () {
 								<span className="input-group-addon">{this.state.currency}</span>
 						</div>
 						<div className="row formRow">
-							<button className="btn btn-success" onClick={this.update}>Create Sentiment</button>
+							<button className="btn btn-primary" onClick={this.update}>Create Sentiment</button>
 						</div>
         </form>
 			);
