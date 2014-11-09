@@ -11,8 +11,8 @@ $(document).ready(function () {
       alert("Log In Failed: " + JSON.stringify(err));
     } else if (data) {
       $("#bg1").css("display", "none");
-      $("#bg2").css("height", window.computeStandardHeight());
       $("#bg2").removeAttr("style");
+      $("#bg2").css("height", window.computeStandardHeight());
 
       window.getUser(data, function (err, _data) {
         if (err) {
