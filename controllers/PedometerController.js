@@ -37,6 +37,9 @@ var get = function (req, resp) {
   }).then(stepDataRollup)
   .then(function (data) {
     resp.json(data);
+  }).catch(function (e) {
+    console.error('Error getting pedometer data:', e);
+    resp.json(e);
   });
 };
 

@@ -20,8 +20,12 @@ var create = function (req, resp) {
     expire_date: data.expire_date,
     create_date: data.create_date,
     goal: data.goal
+  }).then(function (incentive) {
+    console.log('Created incentive:', incentive);
+    resp.json(incentive);
   }).catch(function (e) {
     console.error('Failed to create incentive:', e);
+    resp.json(e);
   });
 };
 

@@ -10,9 +10,7 @@ var getAccessToken = function (req, resp) {
       resp.json(res);
     }).catch(function (e) {
       console.error('Error getting access token:', e);
-      resp.json({
-        error: 'Error getting access token'
-      });
+      resp.json(e);
     });
 };
 
