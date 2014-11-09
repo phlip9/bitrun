@@ -12,7 +12,7 @@ window.redirectToCoinBase = function () {
 };
 
 window.isUserLoggedIn = function () {
-  var flag = this.location.indexOf("?code=");
+  var flag = String(this.location).indexOf("?code=");
   if (flag !== -1) {
     var code = this.location.slice(flag + 6);
     var token_uri = ACCESS_TOKEN_URI + "?grant_type=authorization_code&code=" +
