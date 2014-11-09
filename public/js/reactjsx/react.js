@@ -44,63 +44,72 @@ window.renderIncentiveReact = function(incentive) {
 
 };
 
-window.setIncentiveReact = function (id) {
+window.setIncentiveReact = function () {
 
 	var APP2 = React.createClass({
 		mixins: [React.addons.LinkedStateMixin],
-		getLength: function () {
-			var value = document.getElementById("theDatalist").value;
-			if (value === "Week") {
-				return 7;
-			} else if (value === "Two Weeks") {
-				return 14;
-			} else if (value === "Month") {
-				return 30;
-			} else {
-				return undefined;
-			}
+		change: function () {
+			this.setState({
+				currency: this.refs.curr.getDOMNode().value
+			});
 		},
 		update: function (e) {
 			e.preventDefault();
 			var obj = {
-				km: this.state.km,
-				length: this.getLength(),
-				amount: this.state.amount,
-				id: id
+				goal: String(parseInt(this.state.goal)),
+				repeat: this.refs.every.getDOMNode().value,
+				amount: String(parseInt(this.state.amount)),
+				currency: this.refs.curr.getDOMNode().value,
 			};
 			console.log(JSON.stringify(obj));
+			window.createIncentive(obj);
 		},
 		getInitialState: function () {
 			return {
-				km: 0,
-				length: 7,
-				amount: 0
+				goal: "",
+				repeat: "",
+				amount: "",
+				currency: "BTC"
 			};
 		},
 		render: function () {
 			return (
-        <form>
-            <div className="input-group">
-                <input valueLink={this.linkState('km')} type="number"
+        <form className="myForm">
+            <div className="input-group row formRow">
+                <input valueLink={this.linkState('goal')} type="text"
 								 placeholder="How many kms do you wanna run?"
 								 className="form-control"/>
 								<span className="input-group-addon">km</span>
             </div>
-						<div className="input-group">
+						<div className="input-group row formRow">
 								<span className="input-group-addon">Period:</span>
-								<input list="periods" name="period" className="form-control" id="theDatalist" />
+								<input list="periods" name="period" className="form-control"
+								 ref="every" placeholder="How long should one period be?"/>
 								<datalist id="periods">
-										<option value="Week"/>
-										<option value="Two Weeks"/>
-										<option value="Month"/>
+										<option value="weekly"/>
+										<option value="every_two_weeks"/>
+										<option value="monthly"/>
+										<option value="yearly"/>
 								</datalist>
 						</div>
-						<div className="input-group">
-								<input valueLink={this.linkState('amount')} type="number"
-								 placeholder="How many BitCoins do you want to commit"/>
+						<div className="input-group row formRow">
+								<input valueLink={this.linkState('amount')} type="text"
+								 placeholder="How many BitCoins do you want to commit?"
+								 className="form-control"/>
 								<span className="input-group-addon">BitCoins</span>
 						</div>
-						<button className="btn btn-success" onClick={this.update}>Go</button>
+						<div className="input-group row formRow">
+								<input list="currencyList" name="currencylst" className="form-control"
+								ref="curr" placeholder="BitCoin or US Dollar?" onChange={this.change}/>
+								<datalist id="currencyList">
+										<option value="BTC"/>
+										<option value="USD"/>
+								</datalist>
+								<span className="input-group-addon">{this.state.currency}</span>
+						</div>
+						<div className="row formRow">
+							<button className="btn btn-success" onClick={this.update}>Create Sentiment</button>
+						</div>
         </form>
 			);
 		}

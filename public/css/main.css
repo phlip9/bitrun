@@ -34,7 +34,7 @@
 }
 
 #title {
-  margin-top: 50%;
+  margin-top: 40%;
   padding: 1%;
   background-color: rgba(255, 255, 255, 0.60);
 }
@@ -45,4 +45,15 @@
   width: 100%;
 }
 
-#create {}
+.myForm {
+  font-size: 20px;
+  font-family: "Avenir Next W02 Thin","Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.formRow {
+  /*TODO: Margin Stuff*/
+}
+
+#create {
+  background: rgba(255, 255, 255, 0.60);
+}
