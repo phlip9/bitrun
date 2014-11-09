@@ -11,7 +11,7 @@ window.redirectToCoinBase = function () {
   this.location.assign(auth_uri);
 };
 
-window.isUserLoggedIn = function () {
+window.isUserLoggedIn = function (cb) {
   var flag = String(this.location).indexOf("?code=");
   if (flag !== -1) {
     var code = String(this.location).slice(flag + 6);
@@ -22,14 +22,15 @@ window.isUserLoggedIn = function () {
     console.log(token_uri);
     $.post("https://bitrunapp.herokuapp.com/oauth", {uri:token_uri})
      .done(function (data) {
-       console.log(data);
-       console.log(JSON.stringify(data));
+       console.log("Success! %s", JSON.stringify(data));
+       if (cb) cb(null, data);
      })
      .fail(function (err) {
-       console.error(err);
-       console.error(JSON.stringify(err));
+       if (cb) cb(err);
      });
-  }
+   } else {
+     if (cb) cb();
+   }
 };
 
 //https://www.coinbase.com/oauth/authorize?grant_type=authorization_code&code=05cded88ff915bb76ae0b109b78ce9d98cd0d8050c34c565188cddb4b7c05cda&redirect_uri=https://bitrunapp.herokuapp.com&client_id=68cfc8c475c6730bd046e4da8039a76edfa76f913bf58d7d0ddaffe937360139&client_secret=d376095308bb244127abfa069cb9aff9787f5542238051b9e3d67cbf0fa2477d
