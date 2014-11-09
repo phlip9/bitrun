@@ -20,7 +20,7 @@ window.isUserLoggedIn = function (cb) {
                     CLIENT_ID + "&client_secret=" + CLIENT_SECRET;
     console.log(code);
     console.log(token_uri);
-    $.post("https://bitrunapp.herokuapp.com/oauth", {uri:token_uri})
+    $.post("/oauth", {uri:token_uri})
      .done(function (data) {
        console.log("Success! %s", JSON.stringify(data));
        if (cb) cb(null, data);
