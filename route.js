@@ -1,6 +1,7 @@
 'use strict';
 
 var PedometerController = require('controllers/PedometerController.js');
+var OauthController = require('controllers/OauthController.js');
 
 var socketRoutes = function (socket) {
   console.log('[Socket] Someone connected to socket');
@@ -22,6 +23,8 @@ var router = function(app, io) {
 
   app.get('/api/pedometer/:coinbase_id:');
   app.post('/api/pedometer/:coinbase_id:');
+  
+  app.post('/oauth', OauthController.getAccessToken);
 
 };
 

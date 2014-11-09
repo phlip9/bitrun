@@ -28,18 +28,18 @@ var path = process.env.MONGOHQ_URL + "/bitrun";
 mongoose.connect(path);
 
 mongoose.connection.on("error", function() {
-    console.error.bind("[MongoDB] Connection Failed: ");
+  console.error.bind("[MongoDB] Connection Failed: ");
 });
 
 mongoose.connection.once("open", function() {
-    console.log("[MongoDB] Connection Success: %s", path);
+  console.log("[MongoDB] Connection Success: %s", path);
 });
 
 setupRoutes(app, io);
 
 //Server Listening to Port
 var server = http.listen((process.env.PORT || 5000), function(){
-    console.log("[Server] Listening at %s", server.address().port);
+  console.log("[Server] Listening at %s", server.address().port);
 });
 
 module.exports = app;
