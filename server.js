@@ -1,7 +1,7 @@
 'use strict';
 
 // required packages
-var express = require("express.io");
+var express = require("express");
 var bodyParser = require("body-parser");
 var setupRoutes = require('./route.js');
 var cors = require('cors');
@@ -9,7 +9,8 @@ var mongoose = require('mongoose');
 
 // set up app with middlewares
 var app = express();
-app.http().io();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 app.use(function(req, res, next){
   console.log("[Server] %s -> %s", req.method, req.url);
@@ -33,10 +34,10 @@ mongoose.connection.once("open", function() {
     console.log("[MongoDB] Connection Success: %s", path);
 });
 
-setupRoutes(app);
+setupRoutes(app, io);
 
 //Server Listening to Port
-var server = app.listen((process.env.PORT || 5000), function(){
+var server = http.listen((process.env.PORT || 5000), function(){
     console.log("[Server] Listening at %s", server.address().port);
 });
 
