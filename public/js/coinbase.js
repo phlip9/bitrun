@@ -14,12 +14,11 @@ window.redirectToCoinBase = function () {
 window.isUserLoggedIn = function () {
   var flag = String(this.location).indexOf("?code=");
   if (flag !== -1) {
-    var code = this.location.slice(flag + 6);
+    var code = String(this.location).slice(flag + 6);
     var token_uri = ACCESS_TOKEN_URI + "?grant_type=authorization_code&code=" +
                     code + "&redirect_uri=" + REDIRECT_URI + "&client_id=" +
                     CLIENT_ID + "&client_secret=" + CLIENT_SECRET;
-    $.ajax({
-      url: token_uri,
+    $.ajax(token_uri, {
       type: "POST",
       success: function (data) {
         alert(data);
