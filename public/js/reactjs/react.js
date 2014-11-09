@@ -75,7 +75,7 @@ window.setIncentiveReact = function () {
 		update: function (e) {
 			e.preventDefault();
 			var obj = {
-				goal: String(parseInt(this.state.goal)),
+				goal: String(parseFloat(this.state.goal)),
 				repeat: this.refs.every.getDOMNode().value,
 				amount: String(parseFloat(this.state.amount)),
 				currency: this.refs.curr.getDOMNode().value,
