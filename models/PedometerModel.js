@@ -6,6 +6,7 @@ var Promise = require('bluebird');
 // Schema and Model
 var schema = mongoose.Schema({
   distance: Number,
+  steps: Number,
   from: String,
   to: String
 });
