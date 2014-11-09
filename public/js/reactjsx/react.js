@@ -17,7 +17,7 @@ window.renderIncentiveReact = function(incentive) {
 				};
 		},
 		changePercent: function (total) {
-			this.setState({percent: (total/parseInt(incentive.goal))*100 + "%"})
+			this.setState({percent: (total/parseFloat(incentive.goal))*100 + "%"})
 		},
 		getInitialState: function () {
 			var app = this;
