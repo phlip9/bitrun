@@ -26,6 +26,7 @@ var router = function(app, io) {
   app.post('/oauth', CoinbaseController.getAccessToken);
   app.post('/api/coinbase', CoinbaseController.forward);
   app.post('/api/coinbase/checkout', CoinbaseController.generateCheckout);
+  app.post('/api/coinbase/callback', CoinbaseController.transactionCallback);
 
 };
 

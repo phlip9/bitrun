@@ -13,7 +13,7 @@ var distanceRollup = function (stepData) {
     }
   }
 
-  console.log('total_distance:', total_distance, ' stepData:', stepData);
+  console.log('total_distance:', total_distance);
 
   return {
     total_distance: total_distance
