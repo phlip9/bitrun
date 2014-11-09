@@ -21,7 +21,7 @@ var create = function (req, resp) {
     create_date: data.create_date,
     goal: data.goal
   }).catch(function (e) {
-    console.error('Failed to create incentive:', e.message);
+    console.error('Failed to create incentive:', e);
   });
 };
 
