@@ -56,12 +56,16 @@
           </div>
         </div>
 
-        <div id="bg2">
-          <div id="loading"></div>
-          <div id="dashboard"></div>
-          <div id="create">
-            <div>I want to run <input /> miles to </div>
+        <div id="bg2" style="display: none">
+          <div id="loading">
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                <span class="sr-only">100% Complete</span>
+              </div>
+            </div>
           </div>
+          <div id="dashboard" style="display: none"></div>
+          <div id="create" style="display: none"></div>
         </div>
 
         <script src="lib/jquery.min.js"></script>
