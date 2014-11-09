@@ -40,7 +40,7 @@ window.renderIncentiveReact = function(incentive) {
 		}
 	});
 
-	React.renderComponent(React.createElement(APP, null), document.getElementById("dashboard"));
+	React.render(React.createElement(APP, null), document.getElementById("dashboard"));
 
 };
 
@@ -48,17 +48,27 @@ window.setIncentiveReact = function (id) {
 
 	var APP2 = React.createClass({displayName: 'APP2',
 		mixins: [React.addons.LinkedStateMixin],
-		update: function(e) {
+		getLength: function () {
+			var value = document.getElementById("theDatalist").value;
+			if (value === "Week") {
+				return 7;
+			} else if (value === "Two Weeks") {
+				return 14;
+			} else if (value === "Month") {
+				return 30;
+			} else {
+				return undefined;
+			}
+		},
+		update: function (e) {
 			e.preventDefault();
 			var obj = {
 				km: this.state.km,
-				length: this.state.length,
+				length: this.getLength(),
 				amount: this.state.amount,
 				id: id
 			};
 			console.log(JSON.stringify(obj));
-			window.alert(JSON.stringify(obj));
-			return false;
 		},
 		getInitialState: function () {
 			return {
@@ -70,23 +80,25 @@ window.setIncentiveReact = function (id) {
 		render: function () {
 			return (
         React.createElement("form", null, 
-            React.createElement("div", null, 
-								React.createElement("span", null, "I want to run:"), 
-                React.createElement("input", {valueLink: this.linkState('km'), type: "number"}), 
-                React.createElement("label", null, this.state.km), 
-								React.createElement("span", null, "km.")
+            React.createElement("div", {className: "input-group"}, 
+                React.createElement("input", {valueLink: this.linkState('km'), type: "number", 
+								 placeholder: "How many kms do you wanna run?", 
+								 className: "form-control"}), 
+								React.createElement("span", {className: "input-group-addon"}, "km")
             ), 
-						React.createElement("div", null, 
-								React.createElement("span", null, "I want to keep running for:"), 
-								React.createElement("input", {valueLink: this.linkState('length'), type: "number"}), 
-								React.createElement("label", null, this.state.length), 
-								React.createElement("span", null, "days.")
+						React.createElement("div", {className: "input-group"}, 
+								React.createElement("span", {className: "input-group-addon"}, "Period:"), 
+								React.createElement("input", {list: "periods", name: "period", className: "form-control", id: "theDatalist"}), 
+								React.createElement("datalist", {id: "periods"}, 
+										React.createElement("option", {value: "Week"}), 
+										React.createElement("option", {value: "Two Weeks"}), 
+										React.createElement("option", {value: "Month"})
+								)
 						), 
-						React.createElement("div", null, 
-								React.createElement("span", null, "I'm willing to bid:"), 
-								React.createElement("input", {valueLink: this.linkState('amount'), type: "number"}), 
-								React.createElement("label", null, this.state.amount), 
-								React.createElement("span", null, "BitCoins.")
+						React.createElement("div", {className: "input-group"}, 
+								React.createElement("input", {valueLink: this.linkState('amount'), type: "number", 
+								 placeholder: "How many BitCoins do you want to commit"}), 
+								React.createElement("span", {className: "input-group-addon"}, "BitCoins")
 						), 
 						React.createElement("button", {className: "btn btn-success", onClick: this.update}, "Go")
         )
@@ -94,5 +106,5 @@ window.setIncentiveReact = function (id) {
 		}
 	});
 
-	React.renderComponent(React.createElement(APP2, null), document.getElementById("create"));
+	React.render(React.createElement(APP2, null), document.getElementById("create"));
 };
