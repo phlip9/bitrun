@@ -10,7 +10,7 @@ var get = function (req, resp) {
 
 var create = function (req, resp) {
   var data = req.body;
-  var coinbase_id = req.params('coinbase_id');
+  var coinbase_id = req.params.coinbase_id;
 
   console.log('IncentiveController [create] id:', coinbase_id, 'data:', data);
 

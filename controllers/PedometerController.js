@@ -20,7 +20,7 @@ var stepDataRollup = function (stepData) {
 };
 
 var get = function (req, resp) {
-  var coinbase_id = req.params('coinbase_id');
+  var coinbase_id = req.params.coinbase_id;
 
   console.log('PedometerController [get] id:', coinbase_id);
 
