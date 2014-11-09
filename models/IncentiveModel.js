@@ -9,7 +9,8 @@ var schema = mongoose.Schema({
   amount: Number,
   expire_date: String,
   create_date: String,
-  goal: Number
+  goal: Number,
+  verified: Boolean
 });
 
 var getModel = function () {

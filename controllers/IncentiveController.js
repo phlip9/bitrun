@@ -29,7 +29,8 @@ var create = function (req, resp) {
     amount: data.amount,
     expire_date: data.expire_date,
     create_date: data.create_date,
-    goal: data.goal
+    goal: data.goal,
+    verified: false
   }).then(function (incentive) {
     console.log('Created incentive:', incentive);
     resp.json(incentive);
