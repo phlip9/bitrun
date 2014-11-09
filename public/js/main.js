@@ -3,6 +3,7 @@ $(document).ready(function () {
 
   // render section 1
   $("#bg1").css("height", window.computeStandardHeight());
+  $("#start").toggleClass("disabled");
 
   // check whether the user successfully logged in
   window.isUserLoggedIn(function (err, data) {

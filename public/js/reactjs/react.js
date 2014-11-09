@@ -62,6 +62,21 @@ window.setIncentiveReact = function () {
 				currency: this.refs.curr.getDOMNode().value,
 			};
 			console.log(JSON.stringify(obj));
+			var repeatResult = ["monthly", "weekly", "every_two_weeks", "yearly"];
+			var currencyResult = ["USD", "BTC"];
+
+			/* TODO: Error Handling
+			if (repearResult.indexOf(obj.repeat) === -1) {
+
+			} else if (currencyResult.indexOf(obj.currency) === -1) {
+
+			} else if (goal === "NaN") {
+
+			} else if (amount === "NaN") {
+
+			} else {
+				window.createIncentive(obj);
+			} */
 			window.createIncentive(obj);
 		},
 		getInitialState: function () {
@@ -78,13 +93,13 @@ window.setIncentiveReact = function () {
             React.createElement("div", {className: "input-group row formRow"}, 
                 React.createElement("input", {valueLink: this.linkState('goal'), type: "text", 
 								 placeholder: "How many kms do you wanna run?", 
-								 className: "form-control"}), 
+								 className: "form-control", required: true}), 
 								React.createElement("span", {className: "input-group-addon"}, "km")
             ), 
 						React.createElement("div", {className: "input-group row formRow"}, 
 								React.createElement("span", {className: "input-group-addon"}, "Period:"), 
 								React.createElement("input", {list: "periods", name: "period", className: "form-control", 
-								 ref: "every", placeholder: "How long should one period be?"}), 
+								 ref: "every", placeholder: "How long should one period be?", required: true}), 
 								React.createElement("datalist", {id: "periods"}, 
 										React.createElement("option", {value: "weekly"}), 
 										React.createElement("option", {value: "every_two_weeks"}), 
@@ -95,12 +110,13 @@ window.setIncentiveReact = function () {
 						React.createElement("div", {className: "input-group row formRow"}, 
 								React.createElement("input", {valueLink: this.linkState('amount'), type: "text", 
 								 placeholder: "How many BitCoins do you want to commit?", 
-								 className: "form-control"}), 
+								 className: "form-control", required: true}), 
 								React.createElement("span", {className: "input-group-addon"}, "BitCoins")
 						), 
 						React.createElement("div", {className: "input-group row formRow"}, 
 								React.createElement("input", {list: "currencyList", name: "currencylst", className: "form-control", 
-								ref: "curr", placeholder: "BitCoin or US Dollar?", onChange: this.change}), 
+								ref: "curr", placeholder: "BitCoin or US Dollar?", onChange: this.change, 
+								required: true}), 
 								React.createElement("datalist", {id: "currencyList"}, 
 										React.createElement("option", {value: "BTC"}), 
 										React.createElement("option", {value: "USD"})
@@ -108,7 +124,7 @@ window.setIncentiveReact = function () {
 								React.createElement("span", {className: "input-group-addon"}, this.state.currency)
 						), 
 						React.createElement("div", {className: "row formRow"}, 
-							React.createElement("button", {className: "btn btn-success", onClick: this.update}, "Create Sentiment")
+							React.createElement("button", {className: "btn btn-primary", onClick: this.update}, "Create Sentiment")
 						)
         )
 			);
