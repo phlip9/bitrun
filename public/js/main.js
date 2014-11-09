@@ -110,8 +110,8 @@ window.createIncentive = function (incentive) {
 
   $.post("/api/coinbase/checkout", incentive)
    .done(function (link) {
-     console.log("Link generated: %s", link);
-     window.location.assign(link);
+     console.log("Link generated: %s", link.url);
+     window.location.assign(link.url);
    })
    .fail(function (err) {
      console.error(err);
