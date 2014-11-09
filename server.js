@@ -24,7 +24,8 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 
 // connect to database
-var path = process.env.MONGOHQ_URL + "/bitrun";
+var path = process.env.MONGOHQ_URL;
+console.log('MongoDB path:', path);
 mongoose.connect(path);
 
 mongoose.connection.on("error", function() {
