@@ -20,6 +20,10 @@ window.isUserLoggedIn = function () {
                     CLIENT_ID + "&client_secret=" + CLIENT_SECRET;
     $.ajax(token_uri, {
       type: "POST",
+      crossDomain : true,
+      xhrFields: {
+        withCredentials: true
+      },
       success: function (data) {
         alert(data);
         alert(JSON.stringify(data));
