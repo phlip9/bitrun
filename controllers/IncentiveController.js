@@ -14,7 +14,23 @@ var create = function (req, resp) {
 
   console.log('IncentiveController [create] id:', coinbase_id, 'data:', data);
 
-  return IncentiveModel.createAsync({
+  IncentiveModel.create({
+    coinbase_id: coinbase_id,
+    amount: data.amount,
+    expire_date: data.expire_date,
+    create_date: data.create_date,
+    goal: data.goal
+  }, function (err, incentive) {
+    if (err) {
+      console.error('Failed to create incentive:', err);
+      resp.json(err);
+    } else {
+      console.log('Created incentive:', incentive);
+      resp.json(incentive);
+    }
+  });
+
+  /*return IncentiveModel.createAsync({
     coinbase_id: coinbase_id,
     amount: data.amount,
     expire_date: data.expire_date,
@@ -26,7 +42,7 @@ var create = function (req, resp) {
   }).catch(function (e) {
     console.error('Failed to create incentive:', e);
     resp.json(e);
-  });
+  });*/
 };
 
 module.exports = {
