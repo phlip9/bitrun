@@ -76,15 +76,17 @@ var transactionCallback = function (req, resp) {
   var body = req.body;
   console.log('CoinbaseController [transactionCallback]', body);
 
-  if (body.order.status === 'complete') {
-    var coinbase_id = body.order.custom;
+  if (body.order.status === 'completed') {
+    if (body.order.custom) {
+      var coinbase_id = body.order.custom;
 
-    IncentiveModel.findOneAndUpdateAsync({ coinbase_id: coinbase_id }, { verified: true })
-      .then(function (ret) {
-        console.log('Successfully updated IncentiveModel', ret);
-      }).catch(function (err) {
-        console.error('Error updating IncentiveModel', err);
-      });
+      IncentiveModel.findOneAndUpdateAsync({ coinbase_id: coinbase_id }, { verified: true })
+        .then(function (ret) {
+          console.log('Successfully updated IncentiveModel', ret);
+        }).catch(function (err) {
+          console.error('Error updating IncentiveModel', err);
+        });
+    }
   }
 };
 
