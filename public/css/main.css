@@ -67,6 +67,10 @@
   background: rgba(0, 0, 0, 0.30);
 }
 
+#dashboard {
+  background: rgba(0, 0, 0, 0.30);
+}
+
 .data-row {
   margin: 5%;
   padding: 5%;
