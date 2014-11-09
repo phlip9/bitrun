@@ -1,7 +1,6 @@
 'use strict';
 
 var request = require('request-promise');
-var PedometerModel = require('../models/PedometerModel.js');
 
 var getAccessToken = function (req, resp) {
   console.log('OauthController [getAccessToken]', req.body);
@@ -9,6 +8,11 @@ var getAccessToken = function (req, resp) {
     .then(function (res) {
       console.log('OauthController got access_token!', JSON.stringify(res));
       resp.json(res);
+    }).catch(function (e) {
+      console.error('Error getting access token:', e.message);
+      resp.json({
+        error: 'Error getting access token'
+      });
     });
 };
 

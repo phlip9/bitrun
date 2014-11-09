@@ -1,13 +1,15 @@
 'use strict';
 
-var request = require('request-promise');
 var PedometerModel = require('../models/PedometerModel.js');
 
-var getStepData = function (coinbase_id, from, to) {
+var get = function (req, resp) {
+  var coinbase_id = req.params('coinbase_id');
 
+  console.log('PedometerController [get] id:', coinbase_id);
 };
 
-var addStepData = function (data) {
+var add = function (data) {
+  console.log('PedometerController [add]', data);
   return PedometerModel.createAsync({
     coinbase_id: data.coinbase_id,
     steps: data.steps,
@@ -20,5 +22,6 @@ var addStepData = function (data) {
 };
 
 module.exports = {
-  addStepData: addStepData,
+  get: get,
+  add: add,
 };
