@@ -48,7 +48,8 @@ window.setIncentiveReact = function (id) {
 
 	var APP2 = React.createClass({
 		mixins: [React.addons.LinkedStateMixin],
-		update: function() {
+		update: function(e) {
+			e.preventDefault();
 			var obj = {
 				km: this.state.km,
 				length: this.state.length,
@@ -56,7 +57,8 @@ window.setIncentiveReact = function (id) {
 				id: id
 			};
 			console.log(JSON.stringify(obj));
-			alert(JSON.stringify(obj));
+			window.alert(JSON.stringify(obj));
+			return false;
 		},
 		getInitialState: function () {
 			return {
