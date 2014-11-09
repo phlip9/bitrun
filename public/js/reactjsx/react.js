@@ -40,7 +40,7 @@ window.renderIncentiveReact = function(incentive) {
 		}
 	});
 
-	React.renderComponent(<APP />, document.getElementById("dashboard"));
+	React.render(<APP />, document.getElementById("dashboard"));
 
 };
 
@@ -48,17 +48,27 @@ window.setIncentiveReact = function (id) {
 
 	var APP2 = React.createClass({
 		mixins: [React.addons.LinkedStateMixin],
-		update: function(e) {
+		getLength: function () {
+			var value = document.getElementById("theDatalist").value;
+			if (value === "Week") {
+				return 7;
+			} else if (value === "Two Weeks") {
+				return 14;
+			} else if (value === "Month") {
+				return 30;
+			} else {
+				return undefined;
+			}
+		},
+		update: function (e) {
 			e.preventDefault();
 			var obj = {
 				km: this.state.km,
-				length: this.state.length,
+				length: this.getLength(),
 				amount: this.state.amount,
 				id: id
 			};
 			console.log(JSON.stringify(obj));
-			window.alert(JSON.stringify(obj));
-			return false;
 		},
 		getInitialState: function () {
 			return {
@@ -70,23 +80,25 @@ window.setIncentiveReact = function (id) {
 		render: function () {
 			return (
         <form>
-            <div>
-								<span>I want to run:</span>
-                <input valueLink={this.linkState('km')} type="number" />
-                <label>{this.state.km}</label>
-								<span>km.</span>
+            <div className="input-group">
+                <input valueLink={this.linkState('km')} type="number"
+								 placeholder="How many kms do you wanna run?"
+								 className="form-control"/>
+								<span className="input-group-addon">km</span>
             </div>
-						<div>
-								<span>I want to keep running for:</span>
-								<input valueLink={this.linkState('length')} type="number" />
-								<label>{this.state.length}</label>
-								<span>days.</span>
+						<div className="input-group">
+								<span className="input-group-addon">Period:</span>
+								<input list="periods" name="period" className="form-control" id="theDatalist" />
+								<datalist id="periods">
+										<option value="Week"/>
+										<option value="Two Weeks"/>
+										<option value="Month"/>
+								</datalist>
 						</div>
-						<div>
-								<span>I'm willing to bid:</span>
-								<input valueLink={this.linkState('amount')} type="number" />
-								<label>{this.state.amount}</label>
-								<span>BitCoins.</span>
+						<div className="input-group">
+								<input valueLink={this.linkState('amount')} type="number"
+								 placeholder="How many BitCoins do you want to commit"/>
+								<span className="input-group-addon">BitCoins</span>
 						</div>
 						<button className="btn btn-success" onClick={this.update}>Go</button>
         </form>
@@ -94,5 +106,5 @@ window.setIncentiveReact = function (id) {
 		}
 	});
 
-	React.renderComponent(<APP2 />, document.getElementById("create"));
+	React.render(<APP2 />, document.getElementById("create"));
 };

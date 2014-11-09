@@ -15,7 +15,7 @@
 
 #bg1 {
   background-size: cover;
-  background-image: url('../img/background.jpg');
+  background-image: url('../img/background.jpeg');
   background-repeat: no-repeat;
   background-position: top left;
   background-origin: content-box;
@@ -44,3 +44,5 @@
   height: 100%;
   width: 100%;
 }
+
+#create {}
