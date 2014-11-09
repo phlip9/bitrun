@@ -3,9 +3,19 @@
 var IncentiveModel = require('../models/IncentiveModel.js');
 
 var get = function (req, resp) {
-  var coinbase_id = req.params('coinbase_id');
+  var coinbase_id = req.params.coinbase_id;
 
   console.log('IncentiveController [get] id:', coinbase_id);
+
+  return IncentiveModel.findOneAsync({
+    coinbase_id: coinbase_id
+  }).then(function (incentive) {
+    console.log('incentive:', incentive);
+    resp.json(incentive);
+  }).catch(function (e) {
+    console.error(e);
+    resp.json(e);
+  });
 };
 
 var create = function (req, resp) {

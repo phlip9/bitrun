@@ -49,8 +49,8 @@ var add = function (data) {
     coinbase_id: data.coinbase_id,
     steps: data.steps,
     distance: data.distance,
-    from: data.distance,
-    to: data.distance
+    from: data.from,
+    to: data.to
   }).then(function (result) {
     console.log('PedometerController [add] created new PedometerModel', result);
   }).catch(function (e) {
