@@ -2,6 +2,8 @@ $(document).ready(function () {
 
   // hide section 2
   $("#bg2").css("display", "none");
+  $("#dashboard").css("display", "none");
+  $("#create").css("display", "none");
 
   // check whether the user successfully logged in
   window.isUserLoggedIn(function (err, data) {
@@ -12,13 +14,14 @@ $(document).ready(function () {
       $("#bg2").css("height", window.computeStandardHeight());
       $("#bg2").removeAttr("style");
 
-      window.getIncentive(data, function (err, data) {
+      window.getUser(data, function (err, data) {
         if (err) {
           console.error(err);
           console.error(JSON.stringify(err));
-        } else {
+        } else if (data) {
           console.log(data);
           console.log(JSON.stringify(data));
+          window.getIncentive(data);
         }
       });
     }
@@ -36,14 +39,42 @@ window.computeStandardHeight = function () {
   return h - _h + "px";
 };
 
-window.getIncentive = function (data, cb) {
+window.getUser = function (data, cb) {
   //var next = function () {};
 
-  $.get(
-      "https://api.coinbase.com/v1/users?access_token=" + data.access_token
-    ).done(function (response) {
+  $.post("/api/coinbase", {
+      url: "users?" + data.access_token,
+      method: 'GET'
+    }).done(function (response) {
       cb(null, response.users[0].user.id);
     }).fail(function (err) {
       cb(err)
     });
+};
+
+window.getIncentive = function (id) {
+  $.get("/api/incentive/" + id)
+   .done(function (data) {
+     if (data) {
+       console.log("Incentive Get: %s", JSON.stringify(data));
+       window.renderIncentive(data);
+     } else {
+       console.log("User does not have incentive yet");
+       window.renderSetIncentive();
+     }
+   })
+   .fail(function (err) {
+     console.error(err);
+   });
+};
+
+window.renderIncentive = function (incentive) {
+  $("#loading").css("display", "none");
+  $("#dashboard").removeAttr("style");
+  window.makeReact(incentive);
+};
+
+window.renderSetIncentive = function () {
+  $("#loading").css("display", "none");
+  $("#create").removeAttr("style");
 };
