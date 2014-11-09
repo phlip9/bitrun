@@ -20,6 +20,7 @@
   background-position: top left;
   background-origin: content-box;
   text-align: center;
+  visibility: visible;
 }
 
 .thin {
@@ -29,12 +30,13 @@
 
 #start {
   font-size: 20px;
+  margin-top: 1%;
 }
 
 #title {
   margin-top: 50%;
   padding: 1%;
-  background-color: rgba(255, 255, 255, 0.40);
+  background-color: rgba(255, 255, 255, 0.60);
 }
 
 #login {
