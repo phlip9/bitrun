@@ -70,7 +70,7 @@ window.setIncentiveReact = function () {
 				goal: "",
 				repeat: "",
 				amount: "",
-				currency: ""
+				currency: "BTC"
 			};
 		},
 		render: function () {
@@ -101,12 +101,10 @@ window.setIncentiveReact = function () {
 						), 
 						React.createElement("div", {className: "input-group row formRow"}, 
 								React.createElement("input", {list: "currencyList", name: "currencylst", className: "form-control", 
-								id: "theCurrencyList", placeholder: "BitCoin or USD?"}), 
+								id: "theCurrencyList", placeholder: "BitCoin or US Dollar?"}), 
 								React.createElement("datalist", {id: "currencyList"}, 
-										React.createElement("option", {value: "weekly"}), 
-										React.createElement("option", {value: "every_two_weeks"}), 
-										React.createElement("option", {value: "monthly"}), 
-										React.createElement("option", {value: "yearly"})
+										React.createElement("option", {value: "BTC"}), 
+										React.createElement("option", {value: "USD"})
 								), 
 								React.createElement("span", {className: "input-group-addon"}, this.getCurrency())
 						), 

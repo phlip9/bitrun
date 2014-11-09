@@ -70,7 +70,7 @@ window.setIncentiveReact = function () {
 				goal: "",
 				repeat: "",
 				amount: "",
-				currency: ""
+				currency: "BTC"
 			};
 		},
 		render: function () {
@@ -101,12 +101,10 @@ window.setIncentiveReact = function () {
 						</div>
 						<div className="input-group row formRow">
 								<input list="currencyList" name="currencylst" className="form-control"
-								id="theCurrencyList" placeholder="BitCoin or USD?"/>
+								id="theCurrencyList" placeholder="BitCoin or US Dollar?"/>
 								<datalist id="currencyList">
-										<option value="weekly"/>
-										<option value="every_two_weeks"/>
-										<option value="monthly"/>
-										<option value="yearly"/>
+										<option value="BTC"/>
+										<option value="USD"/>
 								</datalist>
 								<span className="input-group-addon">{this.getCurrency()}</span>
 						</div>
