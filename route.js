@@ -2,7 +2,6 @@
 
 var PedometerController = require('./controllers/PedometerController.js');
 var IncentiveController = require('./controllers/IncentiveController.js');
-var OauthController = require('./controllers/OauthController.js');
 var CoinbaseController = require('./controllers/CoinbaseController.js');
 
 var socketRoutes = function (socket) {
