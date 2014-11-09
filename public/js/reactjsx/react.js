@@ -3,7 +3,7 @@
 window.renderIncentiveReact = function(incentive) {
 
 	var APP = React.createClass({
-		getDefaultProps: function() {
+		getDefaultProps: function () {
 			return {
 					goal: incentive.goal,
 					create: incentive.create_date,
@@ -16,7 +16,20 @@ window.renderIncentiveReact = function(incentive) {
 					})()
 				};
 		},
+		changePercent: function (total) {
+			this.setState({percent: (total/parseInt(incentive.goal))*100 + "%"})
+		},
 		getInitialState: function () {
+			var app = this;
+			console.log("sending request");
+			$.get("/api/pedometer/" + window.userId)
+			 .done(function (data) {
+					console.log(JSON.stringify(data));
+					app.changePercent(data.total_distance);
+			  })
+			 .fail(function (err) {
+					console.error(err);
+			  })
 			return {
 				percent: "Calculating..."
 			};
