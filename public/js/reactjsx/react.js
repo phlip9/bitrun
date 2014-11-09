@@ -8,13 +8,13 @@ window.renderIncentiveReact = function(incentive) {
 					goal: incentive.goal,
 					create: incentive.create_date,
 					expire: incentive.expire_date,
-					amount: incentive.amount
+					amount: incentive.amount,
+					repeat: (function(){
+						var c_m = moment(incentive.create_date, "YYYY-MM-DDTHH:mm:ssZ");
+						var e_m = moment(incentive.expire_date, "YYYY-MM-DDTHH:mm:ssZ");
+						return e_m.diff(c_m, "days")
+					})()
 				};
-		},
-		getTimeDifference: function () {
-			var c_m = moment(this.create, "YYYY-MM-DDTHH:mm:ssZ");
-			var e_m = moment(this.expire, "YYYY-MM-DDTHH:mm:ssZ");
-			return e_m.diff(c_m, "days")
 		},
 		getInitialState: function () {
 			return {
@@ -25,7 +25,7 @@ window.renderIncentiveReact = function(incentive) {
 			return (
 				<div>
 					<div className="row page-header thin">
-						Your Goal: Run {this.props.goal} km in {this.getTimeDifference()}.
+						Your Goal: Run {this.props.goal} km in {this.props.repeat} days.
 					</div>
 					<div className="row">
 						<div className="col-md-6">
