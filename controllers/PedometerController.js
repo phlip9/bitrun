@@ -22,7 +22,7 @@ var distanceRollup = function (stepData) {
 
 var stepDataRollup = function (create_date, coinbase_id) {
   return PedometerModel
-    .findAsync({ to: { $gt: create_date } })
+    .findAsync({ to: { $gt: create_date }, coinbase_id: coinbase_id })
     .then(distanceRollup);
 };
 
